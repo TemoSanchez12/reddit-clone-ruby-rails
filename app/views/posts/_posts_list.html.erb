@@ -1,7 +1,6 @@
 <div class=''>
-  <% if @posts.empty? %>
+  <% if posts.empty? %>
   <div>
-    <h2 class='text ml-4'>Our popular post</h2>
     <div class='flex justify-center mt-4'>
       <p class='text-sm w-48 border rounded-md border-gray-500 text-gray-400 py-2 px-4 text-center'>
         No posts yet
@@ -11,11 +10,16 @@
 
   <% else %>
 
-    <ul>
-      <% @posts.each do |subreddit|%>
-        <%= subreddit.title %>
-      <% end %>
+    <ul class='flex flex-col gap-4 mt-8 pl-4'>
+      <% posts.each do |post|%>
+        <li>
+          <h3 class='text-sm'>
+            <%= post.title %>
+          </h3>
 
+          <%= link_to 'Show more', post, class: "bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline text-xs"%>
+        </li>
+      <% end %>
     </ul>
 
   <% end %>

@@ -1,0 +1,38 @@
+<nav class="bg-gray-800">
+  <div class="container mx-auto flex justify-between items-center bg-gray-600 rounded-xl py-2 px-4">
+    <div class="text-white font-bold text-xs">
+      <%= link_to 'RedditClone', root_path %>
+    </div>
+    <ul class="flex space-x-4 text-xs">
+      <li>
+        <%= link_to 'Subreddits', subreddits_path, class: "text-gray-300 hover:text-white" %>
+      </li>
+      <li>
+        <%= link_to 'Posts', posts_path, class: "text-gray-300 hover:text-white" %>
+      </li>
+      <% if current_user %>
+        <li>
+          <%= link_to 'Create Post', new_post_path, class: "text-gray-300 hover:text-white" %>
+        </li>
+        <li>
+          <%= link_to 'Create Subreddit', new_subreddit_path, class: "text-gray-300 hover:text-white" %>
+        </li>
+        <li>
+          <%= link_to 'Logout', logout_path, class: "text-gray-300 hover:text-white", 
+            data: {
+              turbo_confirm: 'Are you sure you want to log out?',
+              turbo_method: :delete
+            }
+          %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to 'Login', login_path, class: "text-gray-300 hover:text-white" %>
+        </li>
+        <li>
+          <%= link_to 'Register', register_path, class: "text-gray-300 hover:text-white" %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>

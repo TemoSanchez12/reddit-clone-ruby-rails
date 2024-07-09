@@ -1,0 +1,22 @@
+
+  <%= form_with model: subreddit, class: "mt-10 max-w-md mx-auto bg-gray-700 shadow-md rounded px-8 pt-6 pb-8 mb-4 text-white" do |form| %>
+    <div class="mb-4">
+      <%= form.label :name, class: "block text-sm font-bold mb-2" %>
+      <%= form.text_field :name, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-800 bg-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      <% subreddit.errors.full_messages_for(:name).each do |message| %>
+        <p class="text-red-500 text-xs italic"><%= message %></p>
+      <% end %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.label :description, class: "block text-sm font-bold mb-2" %>
+      <%= form.text_area :description, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-800 bg-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      <% subreddit.errors.full_messages_for(:description).each do |message| %>
+        <p class="text-red-500 text-xs italic"><%= message %></p>
+      <% end %>
+    </div>
+
+    <div class="mb-4">
+      <%= form.submit "Create", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    </div>
+  <% end %>

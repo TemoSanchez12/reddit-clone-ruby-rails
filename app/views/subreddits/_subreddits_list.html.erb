@@ -1,7 +1,6 @@
 <div class=''>
-  <% if @subreddits.empty? %>
+  <% if subreddits.empty? %>
   <div>
-    <h2 class='text ml-4'>Get to know our subreddits</h2>
     <div class='flex justify-center mt-4'>
       <p class='text-sm w-48 border rounded-md border-gray-500 text-gray-400 py-2 px-4 text-center'>
         No subreddits yet
@@ -11,11 +10,19 @@
 
   <% else %>
 
-    <ul>
-      <% @subreddits.each do |subreddit|%>
-        <%= subreddit.title %>
-      <% end %>
+    <ul class='flex flex-col gap-4'>
+      <% subreddits.each do |subreddit|%>
+        <li>
+          <h3 class='text-sm'>
+            <%= subreddit.name %>
+          </h3>
+          <p class='text-xs font-thin'>
+            <%= subreddit.description %>
+          </p>
 
+          <%= link_to 'Show more', subreddit, class: "bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline text-xs"%>
+        </li>
+      <% end %>
     </ul>
 
   <% end %>

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'application#index'
 
   resources :subreddits
+  resources :posts
   resources :users, except: [:new]
 
   get 'register', to: 'users#new', as: 'register'
