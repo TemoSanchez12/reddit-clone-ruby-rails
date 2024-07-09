@@ -9,6 +9,7 @@ class SubredditsController < ApplicationController
 
   def show
     @subreddit = Subreddit.find(params[:id])
+    @posts = @subreddit.posts
   end
 
   def new
@@ -23,6 +24,28 @@ class SubredditsController < ApplicationController
     else
       puts 'Something went wrong while creating new subreddit'
       render :new
+    end
+  end
+
+  def edit
+    @subreddit = Subreddit.find(params[:id])
+  end
+
+  def update
+    @subreddit = Subreddit.find(params[:id])
+
+    if @subreddit.update(subreddit_params)
+      redirect_to @subreddit
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @subreddit = Subreddit.find(params[:id])
+    if @subreddit.user.id == current_user.id
+      @subreddit.destroy
+      redirect_to subreddits_path
     end
   end
 

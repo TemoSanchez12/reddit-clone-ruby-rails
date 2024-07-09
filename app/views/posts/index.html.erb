@@ -6,6 +6,15 @@
 
 <section>
 
-  <%= render '/posts/posts_list', posts: @posts  %>
+   <% if @posts.empty? %>
+    <p class='text-center mt-4'>
+      No posts yet
+    </p>
+
+  <% else %>
+    <div class='mt-4 pl-4'>
+      <%= render '/posts/posts_list', posts: @posts  %>
+    </div>
+  <% end %>
 
 </section>

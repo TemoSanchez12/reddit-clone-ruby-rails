@@ -4,8 +4,15 @@
 
 <hr/>
 
-<section class='mt-20 px-8 flex flex-col gap-32'>
-  <%= render 'subreddits/subreddits_list' %>
-  <%= render 'posts/posts_list' %>
+<section class='mt-10 px-8 flex flex-col gap-32'>
+  <div>
+    <h2 class='mb-4 text-center'>Subreddits that might interest you</h2>
+    <%= render '/subreddits/subreddits_list', subreddits: @subreddits %>
+  </div>
+
+  <div>
+    <h2 class='mb-4 text-center'>Posts that might interest you</h2>
+    <%= render '/posts/posts_list', posts: @posts  %>
+  </div>
 </section>
 

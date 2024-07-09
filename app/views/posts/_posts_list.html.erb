@@ -10,14 +10,32 @@
 
   <% else %>
 
-    <ul class='flex flex-col gap-4 mt-8 pl-4'>
+    <ul class='flex flex-col gap-6'>
       <% posts.each do |post|%>
-        <li>
+        <li class='flex flex-col'>
+        
           <h3 class='text-sm'>
             <%= post.title %>
           </h3>
 
-          <%= link_to 'Show more', post, class: "bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline text-xs"%>
+          <p class='truncate max-w-40 text-xs font-thin my-1'>
+            <%= post.body %>
+          </p>
+          
+          <div>
+            <%= link_to 'Read post', post, class: "bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline text-xs"%>
+            <% if current_user && post.user.id == current_user.id %>
+              <%= link_to 'Edit', edit_post_path(post), class: "text-white bg-slate-400 rounded-md py-1 px-2 text-xs" %>
+              
+              <%= link_to 'Delete', post, class: "text-white bg-red-400 rounded-md py-1 px-2 text-xs", 
+                data: {
+                  turbo_confirm: 'Are you sure you want to delete post?',
+                  turbo_method: :delete
+                }
+              %>
+            <% end %>
+          </div>
+        
         </li>
       <% end %>
     </ul>

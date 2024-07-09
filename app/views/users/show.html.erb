@@ -1,0 +1,17 @@
+<div>
+  <h1 class='flex justify-center py-4 text-xl'>Subreddits and posts from <%= @user.username %></h1>
+</div>
+
+<hr/>
+
+<section class='mt-10 px-8 flex flex-col gap-32'>
+  <div>
+    <h2 class='mb-4 text-center'>Subreddits</h2>
+    <%= render '/subreddits/subreddits_list', subreddits: @subreddits %>
+  </div>
+
+  <div>
+    <h2 class='mb-4 text-center'>Posts</h2>
+    <%= render '/posts/posts_list', posts: @posts  %>
+  </div>
+</section>

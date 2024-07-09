@@ -10,17 +10,28 @@
 
   <% else %>
 
-    <ul class='flex flex-col gap-4'>
+    <ul class='flex flex-col gap-6'>
       <% subreddits.each do |subreddit|%>
         <li>
           <h3 class='text-sm'>
             <%= subreddit.name %>
           </h3>
-          <p class='text-xs font-thin'>
+          <p class='text-xs font-thin mb-2'>
             <%= subreddit.description %>
           </p>
 
-          <%= link_to 'Show more', subreddit, class: "bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline text-xs"%>
+          <div>
+            <%= link_to 'Show posts', subreddit, class: "bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline text-xs"%>
+             <% if current_user && subreddit.user.id == current_user.id %>
+              <%= link_to 'Edit', edit_subreddit_path(subreddit), class: "text-white bg-slate-400 rounded-md py-1 px-2 text-xs" %>
+              <%= link_to 'Delete', subreddit, class: "text-white bg-red-400 rounded-md py-1 px-2 text-xs", 
+                data: {
+                  turbo_confirm: 'Are you sure you want to delete subreddit?',
+                  turbo_method: :delete
+                }
+              %>
+            <% end %>
+          </div>
         </li>
       <% end %>
     </ul>
