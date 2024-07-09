@@ -13,6 +13,20 @@
 
   <body class='bg-gray-800'>
     <main class="container mx-auto text-white">
+    <header class='flex text-xs gap-2 justify-end mt-2'>
+        <% if current_user %>
+          <p>Welcome, <%= current_user.username %>!</p>
+          <%= link_to 'Logout', logout_path, 
+            data: {
+              turbo_confirm: 'Are you sure you want to log out?',
+              turbo_method: :delete
+            }
+          %>
+        <% else %>
+          <%= link_to 'Login', login_path %>
+          <%= link_to 'Register', register_path %>
+        <% end %>
+      </header>
       <%= yield %>
     </main>
   </body>
