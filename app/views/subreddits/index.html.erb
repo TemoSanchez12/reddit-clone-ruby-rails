@@ -1,0 +1,17 @@
+<h1>Nuestros Subreddits</h1>
+
+<% if @subreddits.empty? %>
+  <p>
+    No subreddits yet
+  </p>
+
+<% else %>
+
+  <ul>
+    <% @subreddits.each do |subreddit|%>
+      <%= subreddit.title %>
+    <% end %>
+
+  </ul>
+
+<% end %>
