@@ -14,8 +14,31 @@
     <p><%= @post.body %></p>
   </div>
 
-  <div class="flex justify-between items-center mt-6">
-    <%= link_to 'Edit', edit_post_path(@post), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+  <div class="flex justify-end items-center mt-6">
+    <% if current_user && @post.user == current_user %>
+      <%= link_to 'Edit', edit_post_path(@post), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+    <% end %>
     <%= link_to 'Back', posts_path, class: "bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
   </div>
+</div>
+
+<div class="max-w-2xl mt-8 mx-auto bg-gray-700 p-6 rounded-lg shadow-md"> 
+  <h2 class="text-sm font-semibold mb-4">Comments</h2>
+  <% @post.comments.each do |comment| %>
+    <div class="comment bg-gray-800 p-4 rounded-lg mb-4">
+      <p class="mb-2"><%= comment.body %></p>
+      <p class="text-sm text-gray-400"><em>Posted by <%= comment.user.username %></em></p>
+      <%= render '/comments/comment', comment: comment %>
+      <% if comment.user == current_user %>
+        <%= link_to 'Delete', post_comment_path(@post, comment), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-red-500 hover:text-red-700' %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if current_user %>
+    <h3 class="text-xl font-semibold mb-4">Add a Comment</h3>
+    <%= render '/comments/form', post: @post, parent_comment_id: nil %>
+  <% else %>
+    <p class="text-gray-400">You must be logged in to add a comment.</p>
+  <% end %>
 </div>

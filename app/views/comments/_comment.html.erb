@@ -1,0 +1,11 @@
+<% comment.replies.each do |reply| %>
+  <div class="ml-4">
+    <p><%= reply.body %></p>
+    <p>Posted by: <%= reply.user.username %></p>
+    <%= render 'comments/comment', comment: reply  %>
+  </div>
+<% end %>
+
+<% if current_user %>
+  <%= render 'comments/form', post: comment.post, parent_comment_id: comment.id %>
+<% end %>

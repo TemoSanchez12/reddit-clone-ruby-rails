@@ -1,0 +1,10 @@
+<%= form_with model: [post, post.comments.build], local: true do |form| %>
+  <%= form.hidden_field :parent_comment_id, value: parent_comment_id %>
+  <div class="mb-4">
+    <%= form.label :body, class: "block text-sm font-bold mb-2" %>
+    <%= form.text_area :body, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-800 bg-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="actions">
+    <%= form.submit 'Post Comment', class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+  </div>
+<% end %>
